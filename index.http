@@ -1,0 +1,6 @@
+PUT http://localhost:3000
+
+
+
+//Este archivo sirve solo para visualizar estados de la app
+//Es necesario instalar la extensión RestClient

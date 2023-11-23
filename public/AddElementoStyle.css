@@ -1,0 +1,15 @@
+body{
+    background-color: whitesmoke;
+}
+nav{
+    border-color: black;
+    border-width: 5px;
+    background-color: lightgray;
+    padding: 20px ;
+    display: block;
+    margin-top: 15px;
+    
+}
+.Cancelar {
+    padding: 5px 0px;
+}
