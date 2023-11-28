@@ -12,14 +12,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--importamos bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"> </script>
-    <link type="text/css" rel="stylesheet" href="style.css" /> <!--referencia a la pagina css-->
+    <link type="text/css" rel="stylesheet" href="/style.css" /> <!--referencia a la pagina css-->
 
 </head>
 
 <body> <!-- Cuerpo de la página -->
     <header>
         <div class="logo-container">
-            <a href="index.html">
+            <a href="/">
                 <img class="logo" src=https://i.postimg.cc/vmDHR1gn/Z.jpg alt="Zarma">
             </a>
 
@@ -39,72 +39,84 @@
 <!-- Elementos de la página,usaran el sistema de card de bootstrap -->
 
 
+{{#posts}} <!--posts es el array de elementos que recibimos del controlador, y que se renderizan en la pagina. El simbolo # indica que se va a iterar sobre el array, y que se va a renderizar el contenido de la pagina tantas veces como elementos haya en el array. -->
 
+
+<!--resumiendo, el codigo html que se encuentra entre las llaves se renderizara (completará) tantas veces como elementos haya en el array posts (por defecto 2, pero podemos añadir más, para eso ir a ZarmaService). Cada vez que se renderice, se sustituiran los valores de los atributos entre {{}} por los valores del elemento del array que se este iterando en ese momento. -->
     <div class="container-fluid mb-5">
-        <!-- Contenedor fluido para ocupar el ancho completo de la pantalla, con margen inferior 5 -->
+        
+        
         
         <div class="row">
-            <!-- Organización en filas de Bootstrap -->
+      
             
             <div class="col-md-4 mb-md-0 mb-3 img-fluid ">
-                <!-- Columna con ancho medio (4) en dispositivos grandes, sin margen en dispositivos medianos o pequeños, margen inferior común e imagen redimensionable -->
+                
                 
                 <img src="https://th.bing.com/th/id/OIG.wtzPJjM9UZe_Vn9LeKw5?pid=ImgGn&w=1024&h=1024&rs=1" class="img-thumbnail " alt="Epic Fantasy">
-                <!-- Imagen con clase img-thumbnail para aplicar un estilo de borde en miniatura, texto alternativo para definir imagen -->
             </div>
     
             <div class="col-md-8">
-                <!-- Columna de ancho m8 en dispositivos medianos -->
+           
                 
                 <div class="card text-center">
-                    <!-- Tarjeta centrada con diseño de Bootstrap -->
+                 
                     
-                    <a class="game" href="/pagina-detalle">
-                        <!-- Enlace a la página detalle -->
+                    <a class="game" href="/post/{{id}}">
+                        <!-- Enlace a la página de detalle del elemento id-->
+                    
                         
                         <div class="card-header">
-                            <!-- Cabecera de la tarjeta -->
                             
-                            <h5 class="text-card-header">Epic Fantasy</h5>
-                            <!-- Texto de la cabecera de la tarjeta, propio, no predeterminado -->
+                            
+                            <h5 class="text-card-header">{{title}}</h5>
+                           
                         </div>
     
                         <div class="card-body">
-                            <!-- Cuerpo de la tarjeta -->
+                         
+                           
+                            <h2 class="card-title">Empresa desarrolladora:  {{developer}}</h2>
+                     
                             
-                            <h2 class="card-title">Empresa desarrolladora: DragonForge</h2>
-                            <!-- Título de la tarjeta -->
-                            
-                            <p class="card-text">Un RPG de acción en un mundo de fantasía épica lleno de monstruos,
-                                magia y misterios por descubrir.</p>
-                            <!-- Texto del cuerpo de la tarjeta -->
+                            <p class="card-text">{{description}}</p>
+                           
                             
                             <p class="card-text text-center">15 de agosto de 2022</p>
-                            <!-- Texto del cuerpo de la tarjeta centrado -->
+                            <!--La fecha tambien debe recibirse, pendiente-->
                             
                             <p class="partner text-center">¡Colaborador oficial!</p>
-                            <!-- Texto del cuerpo de la tarjeta con clase de colaborador y centrado, partner no predeterminado -->
-                            
+                            <!--El colaborador tambien debe recibirse, pendiente-->
                         </div>
                     </a>
+                    
                 </div>
             </div>
         </div>
     </div>
     
-
+{{/posts}}
   
+    {{^posts}}  <!--Si no hay elementos en el array posts, se renderizara el siguiente codigo html--> <!-- prueba a comentar los posts por defecto de zarmaService para ver como se mostraria-->
 
+    <p class="partner text-center">This looks a bit empty...</p>
+
+    <!-- Cambiar a una clase css propia-->
+    {{/posts}}
    
 
     <div class="text-center mt-4">
         <a href="/add-elemento" class="btn btn-success">Crear Nuevo Elemento</a>
-        <!--Boton para crear nuevo elemento, btn success es de bootstap y le da color verde-->
+        <!-- cada href debe hacerse relativo (creo que se llama asi), es decir, usando /. el prefijo html ya esta definido en app.js
+        (app.engine('html', mustacheExpress(), '.html');)
+        -->
     </div>
 
 
-    <footer class="footer text-center mt-4"> <!--Pie de página-->
-        <p>&copy; 2023 Zarma</p> <!--&copy es el simbolo de copyright-->
+    <footer class="footer text-center mt-4"> 
+        <p>&copy; 2023 Zarma</p> 
+
+        <!-- cuando no hay elementos el footer se ve algo extraño. nada muy importante-->
     </footer>
 </body>
 

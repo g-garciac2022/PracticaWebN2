@@ -8,7 +8,7 @@
     <link rel="icon" href="https://i.postimg.cc/vmDHR1gn/Z.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"> </script>
-    <link rel="stylesheet" rel="stylesheet" href="detalleStyle.css">
+    <link rel="stylesheet" rel="stylesheet" href="/detalleStyle.css">
 </head>
 
 <body>
@@ -17,14 +17,16 @@
     </nav>
     <div class="container mt-5"> 
         <!-- Atributos e imagen2-->
+
+        <!-- AQui se han añadido los atributos que recibimos del form, cuidado con la sntaxis pues es diferente a la de index-->
+        
         <div class="card">
             <img src="https://th.bing.com/th/id/OIG.wtzPJjM9UZe_Vn9LeKw5?pid=ImgGn&w=1024&h=1024&rs=1"
             alt="Epic Fantasy">
             <div class="card-body">
-                <h4 class="card-title text-center">Epic Fantasy</h4>
-                <p class="card-text">Empresa desarrolladora: DragonForge</p>
-                <p class="card-text"> Un RPG de acción en un mundo de fantasía épica lleno de monstruos,
-                    magia y misterios por descubrir.
+                <h4 class="card-title text-center">{{post.title}}</h4>
+                <p class="card-text">Empresa desarrolladora: {{post.developer}}</p>
+                <p class="card-text"> {{post.description}}
                 </p>
                 <p class="card-text">15 de agosto de 2022</p>
                 <p class="colaborador">¡Colaborador oficial!</p>
@@ -32,7 +34,7 @@
                 <a href="#" class="btn btn-danger">Borrar</a>
             </div>
         </div>
-
+        
         <!-- Subelementos -->
         <div class="mt-5 card">
             <div class="card-body">

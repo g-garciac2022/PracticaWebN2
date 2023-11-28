@@ -11,18 +11,19 @@
 <body>
     <div class="container">
         <h1 class="mt-4 mb-4">Nuevo Videojuego</h1> <!--mt-4 y mb-4 son margenes top y bottom de 4-->
-        <form role="form"> <!--role="form" es una REGLA IMPORTANTE DE LOS FORMS de bootstrap-->
-            <div class="form-group mt-4 mb-4">    <!--form-group es una clase de bootstrap-->
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Introduce el nombre del videojuego">
+        <form method="post" action="/post/new" role="form"> <!--action es para indicar la accion a realizar, vease en ZarmaRouter -->
+            <div class="form-group mt-4 mb-4">   
+                <label for="title">Nombre</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Introduce el nombre del videojuego">
+                <!-- id y name deben de coincidir con el valor del parametro definido en ZarmaService-->
             </div>
             <div class="form-group mt-4 mb-4">
-                <label for="nombre">Descripción</label>
-                <input type="text" class="form-control" id="descr" placeholder="Una breve descripción del videojuego">
+                <label for="description">Descripción</label>
+                <input type="text" class="form-control" id="description"  name="description" placeholder="Una breve descripción del videojuego">
             </div>
-            <div class="form-group mt-4 mb-4"> <!-- form-group es una clase de bootstrap que sirve para agrupar elementos de un formulario-->
-                <label for="creadores">Empresa de desarrollo</label> <!-- for="creadores" es para que al hacer click en el label se seleccione el input--> <!--label es para poner un texto al lado del input-->    <!--form-control es una clase de booststrap para que el input tenga un estilo-->
-                <input type="text" class="form-control" id="creadores" placeholder="Introduce tu empresa">
+            <div class="form-group mt-4 mb-4"> 
+                <label for="developer">Empresa de desarrollo</label> 
+                <input type="text" class="form-control" id="developer" name="developer" placeholder="Introduce tu empresa">
             </div>
             <div class="form-group mt-4 mb-4">
                 <label for="fecha">Fecha</label>
@@ -36,11 +37,13 @@
                 <input type="checkbox" class="form-check-input" id="collab">
                 <label for="checkbox">¿Colaborador? </label>
             </div>
+            <nav class="navegador">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="/" class="btn btn-outline-danger" class="Cancelar" >Cancelar</a>
+                <!-- he movido los botones aqui porque debian de estar dentro del form-->
+            </nav>
         </form>
-        <nav class="navegador">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <a href="/" class="btn btn-outline-danger" class="Cancelar" >Cancelar</a>
-        </nav>
+      
     </div>
 
 </body>

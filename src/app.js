@@ -1,14 +1,17 @@
 /* TO DO:
+EJECUTAR SIEMPRE ESTE ARCHIVO EN VS.
+
+PAgina de error creada, pero solo para error 404, Preguntar como hacer mas o hacerlo generico
+Todo eso se encuentra en zarmaRouter.js
+
+Faltan campos que añadir (fecha, url de imagen, checkbox)
+IMplementar delete
+
+PAgina error algo precaria
 
 
-
-Arreglar Vuelta a la pagina principal   
-Añadir pagina nuevo elemento
-Añadir pagina nuevo subelemento
-Aprender Moustache
-Paginas de error personalizadas
-Aprender formularios
-¿Estructura de datos correcta?
+Desarrollar form apra subelementos
+C
 
 
 */
