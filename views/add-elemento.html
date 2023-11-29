@@ -11,19 +11,19 @@
 <body>
     <div class="container">
         <h1 class="mt-4 mb-4">Nuevo Videojuego</h1> <!--mt-4 y mb-4 son margenes top y bottom de 4-->
-        <form method="post" action="{{#if post.id}}/post/edit/{{post.id}}{{else}}/post/new{{/if}}" role="form"> <!--action es para indicar la accion a realizar, vease en ZarmaRouter -->
+        <form method="post" action="{{#if post.id}}/post/edit/{{post.id}}{{else}}/post/new{{/if post.id}}" role="form"><!--action es para indicar la accion a realizar, vease en ZarmaRouter -->
             <div class="form-group mt-4 mb-4">   
                 <label for="title">Nombre</label>
-                <input type="text" class="form-control" id="title" name="title" value="{{post.title}}" required placeholder="Introduce el nombre del videojuego">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Introduce el nombre del videojuego" value="{{post.title}}" required>
                 <!-- id y name deben de coincidir con el valor del parametro definido en ZarmaService-->
             </div>
             <div class="form-group mt-4 mb-4">
                 <label for="description">Descripción</label>
-                <input type="text" class="form-control" id="description"  name="description" value="{{post.description}}" required placeholder="Una breve descripción del videojuego">
+                <input type="text" class="form-control" id="description"  name="description" placeholder="Una breve descripción del videojuego" value="{{post.description}}" required>
             </div>
             <div class="form-group mt-4 mb-4"> 
                 <label for="developer">Empresa de desarrollo</label> 
-                <input type="text" class="form-control" id="developer" name="developer" value="{{post.developer}}" required placeholder="Introduce tu empresa">
+                <input type="text" class="form-control" id="developer" name="developer" placeholder="Introduce tu empresa" value="{{post.developer}}" required>
             </div>
             <div class="form-group mt-4 mb-4">
                 <label for="fecha">Fecha</label>
