@@ -19,7 +19,7 @@ export function deletePost(id){
 }
 
 export function getPosts(){
-    return [...posts.values()];
+    return [...posts.values()]; //devuelve un array con los valores del mapa
 }
 
 export function getPost(id){
@@ -27,13 +27,13 @@ export function getPost(id){
 }
 
 
-// export function updatePost(id, updatedPost) {
-//     if (posts.has(id)) {
-//         // The post exists, so update it
-//         updatedPost.id = id;
-//         posts.set(id, updatedPost);
-//     } else {
-//         // The post doesn't exist
-//         console.error(`Post with id ${id} not found.`);
-//     }
-// }
+export function updatePost(id, newPostData) {
+    
+    let post = posts.get(id); //The posts.values() method returns a new Iterator object that contains the values for each element in the posts Map in insertion order
+    if (!post) {
+        return null;
+    }
+    let updatedPost = { ...post, ...newPostData }; //copia el post y le añade los nuevos datos 
+    posts.set(id, updatedPost);
+    return updatedPost;
+}

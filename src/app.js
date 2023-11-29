@@ -1,11 +1,10 @@
 /* TO DO:
 EJECUTAR SIEMPRE ESTE ARCHIVO EN VS.
 
-PAgina de error creada, pero solo para error 404, Preguntar como hacer mas o hacerlo generico
-Todo eso se encuentra en zarmaRouter.js
+
 
 Faltan campos que añadir (fecha, url de imagen, checkbox)
-IMplementar delete
+Implementar delete
 
 PAgina error algo precaria
 

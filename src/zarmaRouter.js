@@ -30,18 +30,21 @@ router.get('/add-elemento', (req, res) => { //funciona correctamente
 });
 
 
-router.post('/post/new', (req, res) => {
-    let { title, developer, description } = req.body; //aumentar a fecha, url de imagen y chechkbox
-    let post = boardService.addPost({ title, developer, description });
-    res.redirect(`/post/${post.id}`);  
-    //debe de ser redirect obligatoriamente, si no intentara cargar una pagina web fisica
+router.post('/post/new', (req, res, next) => {
+    let { title, developer, description } = req.body;
+    if (!title || !developer || !description) {
+        next(new Error('El formulario presenta campos vacíos'));  // Pass an error to the error-handling middleware
+    } else {
+        let post = boardService.addPost({ title, developer, description });
+        res.redirect(`/post/${post.id}`);
+    }
 });
 
-router.get('/post/:id', (req, res) => {  //en verdad, si no existe el post debe llamar a nustra funcion de errores y no enviarlo directamente
+router.get('/post/:id', (req, res,next) => {  //en verdad, si no existe el post debe llamar a nustra funcion de errores y no enviarlo directamente
 
     let post = boardService.getPost(req.params.id); //la id se puede ver en el navegador
     if (!post) { //si no existe el post se muestra la pagina de error
-        res.redirect('/error');  // replace '/error' with your actual error page route
+        next(new Error('Post no encontrado')); // replace '/error' with your actual error page route
     } else {
     res.render('pagina-detalle', { post }); //carga la pagina detalle del post que recibe por parametro
 }});
@@ -53,10 +56,43 @@ router.get('/post/:id/delete', (req, res) => { //aun no implementado
     res.render('deleted_post');
 });
 
-router.use((req, res,) => {
-    res.status(404).render('error', { message: 'Page not found' }); //solo para 404, mejorar para que sea para todos
+// router.use((req, res,) => {
+//     res.status(404).render('error', { message: 'Page not found' }); //solo para 404, mejorar para que sea para todos
+// });
+
+router.get('/post/edit/:id', (req, res, next) => {
+    let post = boardService.getPost(req.params.id);
+    
+        res.render('add-elemento', { post });
+    
+});
+router.post('/post/edit/:id', (req, res, next) => {
+    let { title, developer, description } = req.body;
+    if (!title || !developer || !description) {
+        next(new Error('Invalid form data'));  // Pass an error to the error-handling middleware
+    } else {
+        let post = boardService.updatePost(req.params.id, { title, developer, description });
+        if (!post) {
+            next(new Error('Post not found'));
+        } else {
+            res.redirect(`/post/${post.id}`);
+        }
+    }
+});
+router.get('/error-test', (req, res, next) => {
+    next(new Error('This is a test error'));
 });
 
+router.use((req, res, next) => {
+    let err = new Error('Página no encontrada');
+    err.status = 404;
+    next(err);
+});
+
+router.use((err, req, res, next) => {
+    console.error(err.stack);  // Log the stack trace of the error
+    res.status(err.status || 500).render('error', { title: 'Error', message: err.message });  // Respond with the error status and render an error page with the error message
+});
 
 //Este de abajo debería ser para editar, pero aplicado a subelementos NO ELEMENTOS
 
