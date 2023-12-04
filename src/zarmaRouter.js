@@ -8,87 +8,94 @@ router.use(express.static('public'));
 
 router.get('/', (req, res) => {
 
-    res.render('index', { 
-        posts: boardService.getPosts() 
+    res.render('index', {
+        posts: boardService.getPosts()
         //son necesarios estos get post??
+        
     });
 });
 
 router.get('/pagina-detalle', (req, res) => {
 
-    res.render('pagina-detalle', { 
-        posts: boardService.getPosts() 
+    res.render('pagina-detalle', {
+        posts: boardService.getPosts()
         //son necesarios estos get post??
     });
 });
 
 router.get('/add-elemento', (req, res) => {
 
-    res.render('add-elemento', { 
-        posts: boardService.getPosts() 
+    res.render('add-elemento', {
+        posts: boardService.getPosts()
         //son necesarios estos get post??
-        
+
     });
 
 });
 
 router.get('/post/new', (req, res) => {
+
     res.render('add-elemento', { post: {} });
 });
 
 router.post('/add-elemento', (req, res, next) => {
-    let { title, developer, description } = req.body;
-    if (!title || !developer || !description) {
-        next(new Error('Missing form fields'));
-    } else {
-        let newPost = boardService.addPost({ title, developer, description });
-        res.redirect(`/post/${newPost.id}`);
-    }
+    let { title, developer, description, date, contributor } = req.body;
+    
+    let newPost = boardService.addPost({ title, developer, description, date, contributor });
+    console.log(date);
+    res.redirect(`/post/${newPost.id}`);
+
 });
 
 router.post('/post/new', (req, res) => {
-    let { title, developer, description } = req.body;
-     {
-        let post = boardService.addPost({ title, developer, description });
-        res.redirect(`/post/${post.id}`);
-    }
+    let { title, developer, description, date, contributor } = req.body;
+    let post = boardService.addPost({ title, developer, description, date, contributor });
+    res.redirect(`/post/${post.id}`);
+
 });
 
-router.get('/post/:id', (req, res,next) => {  //en verdad, si no existe el post debe llamar a nustra funcion de errores y no enviarlo directamente
+router.get('/post/:id', (req, res, next) => {  //en verdad, si no existe el post debe llamar a nustra funcion de errores y no enviarlo directamente
 
     let post = boardService.getPost(req.params.id); //la id se puede ver en el navegador
     if (!post) { //si no existe el post se muestra la pagina de error
         next(new Error('Post no encontrado')); // replace '/error' with your actual error page route
     } else {
-    res.render('pagina-detalle', { post }); //carga la pagina detalle del post que recibe por parametro
-}});
+        
+        res.render('pagina-detalle', { post }); //carga la pagina detalle del post que recibe por parametro
+    }
+});
 
 router.get('/post/delete/:id', (req, res) => { //aun no implementado
 
     boardService.deletePost(req.params.id);
 
     res.redirect('/');
-    
+
 });
 
 // router.use((req, res,) => {
 //     res.status(404).render('error', { message: 'Page not found' }); //solo para 404, mejorar para que sea para todos
 // });
 
-router.get('/post/edit/:id', (req, res) => {
-    let post = boardService.getPost(req.params.id);
+router.get('/post/edit/:id', (req, res, next) => {
+    let post = boardService.getPost(req.params.id); //la id se puede ver en el navegador
+    if (!post) { //si no existe el post se muestra la pagina de error
+        next(new Error('Post no encontrado')); // replace '/error' with your actual error page route
+    } else {
         res.render('add-elemento', { post });
+        
+    }
 });
 
 router.post('/post/edit/:id', (req, res) => {
-    let { title, developer, description } = req.body;
+    let { title, developer, description, date, contributor } = req.body;
 
 
-        let post = boardService.updatePost(req.params.id, { title, developer, description });
-        console.log(post);
-            res.redirect(`/post/${post.id}`);
-            
-    }
+    let post = boardService.updatePost(req.params.id, { title, developer, description, date, contributor });
+
+    res.redirect(`/post/${post.id}`);
+
+}
 );
 router.get('/error-test', (req, res, next) => {
     next(new Error('This is a test error'));

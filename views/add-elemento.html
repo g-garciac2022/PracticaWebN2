@@ -27,14 +27,14 @@
             </div>
             <div class="form-group mt-4 mb-4">
                 <label for="fecha">Fecha</label>
-                <input type="date" class="form-control" id="date">
+                <input type="date" class="form-control" id="date" name="date"  value="{{post.date}}" required>
             </div>
             <div class="form-group mt-4 mb-4">
                 <label for="exampleFormControlFile1">Cargar imagen </label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="form-group form-check mt-4 mb-4">
-                <input type="checkbox" class="form-check-input" id="collab">
+                <input type="checkbox" class="form-check-input" id="contributor" name="contributor"  {{#post.contributor}}checked{{/post.contributor}}>
                 <label for="checkbox">¿Colaborador? </label>
             </div>
             <nav class="navegador">

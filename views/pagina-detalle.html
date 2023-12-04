@@ -28,8 +28,10 @@
                 <p class="card-text">Empresa desarrolladora: {{post.developer}}</p>
                 <p class="card-text"> {{post.description}}
                 </p>
-                <p class="card-text">15 de agosto de 2022</p>
-                <p class="colaborador">¡Colaborador oficial!</p>
+                <p class="card-text">Fecha de creación: {{post.date}}</p>
+                {{#post.contributor}}
+                <p class="partner text-center">¡Colaborador oficial!</p>
+                {{/post.contributor}}
                 <a href="/post/edit/{{post.id}}" class="btn btn-primary">Editar</a>
                 <a href="/post/delete/{{post.id}}" class="btn btn-danger">Borrar</a>
             </div>

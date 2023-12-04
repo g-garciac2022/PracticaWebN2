@@ -3,7 +3,8 @@ EJECUTAR SIEMPRE ESTE ARCHIVO EN VS.
 
 
 
-Faltan campos que añadir (fecha, url de imagen, checkbox)
+Faltan campos que añadir (url de imagen)
+Arreglar el error que sale cada vez que editamos (no terminal)
 Implementar delete
 
 PAgina error algo precaria

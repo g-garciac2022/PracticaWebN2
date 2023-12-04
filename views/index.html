@@ -82,11 +82,11 @@
                             <p class="card-text">{{description}}</p>
                            
                             
-                            <p class="card-text text-center">15 de agosto de 2022</p>
+                            <p class="card-text text-center">{{date}}</p>
                             <!--La fecha tambien debe recibirse, pendiente-->
-                            
-                            <p class="partner text-center">¡Colaborador oficial!</p>
-                            <!--El colaborador tambien debe recibirse, pendiente-->
+                            {{#contributor}}
+                            <p class="contributor text-center">¡Colaborador oficial!</p>
+                            {{/contributor}}
                         </div>
                     </a>
                     
