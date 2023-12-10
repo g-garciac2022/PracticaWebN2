@@ -66,6 +66,17 @@ router.get('/post/:id', (req, res, next) => {  //en verdad, si no existe el post
 });
 
 router.get('/post/delete/:id', (req, res) => { //aun no implementado
+    let post = boardService.addPost({ title, developer, description, date, contributor });
+    fetch('/post/:id', {
+    method: 'DELETE',
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+})
+.catch((error) => console.error('Error:', error));
+
 
     boardService.deletePost(req.params.id);
 
