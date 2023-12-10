@@ -53,7 +53,7 @@
             <div class="col-md-4 mb-md-0 mb-3 img-fluid ">
                 
                 
-                <img src="https://th.bing.com/th/id/OIG.wtzPJjM9UZe_Vn9LeKw5?pid=ImgGn&w=1024&h=1024&rs=1" class="img-thumbnail " alt="Epic Fantasy">
+                <img src="{{url}}" class="img-thumbnail " alt="Epic Fantasy">
             </div>
     
             <div class="col-md-8">
@@ -99,7 +99,7 @@
   
     {{^posts}}  <!--Si no hay elementos en el array posts, se renderizara el siguiente codigo html--> <!-- prueba a comentar los posts por defecto de zarmaService para ver como se mostraria-->
 
-    <p class="partner text-center">This looks a bit empty...</p>
+    <p class="empty-message">Esto está algo vacío...</p>
 
     <!-- Cambiar a una clase css propia-->
     {{/posts}}

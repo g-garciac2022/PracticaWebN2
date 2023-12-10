@@ -13,6 +13,16 @@
     justify-content: center ;
 }
 
+.empty-message {
+    font-size: 18px;
+    color: #fff; /* Cambiado a texto blanco */
+    text-align: center;
+    margin-top: 20px;
+    
+    padding: 10px;
+    border-radius: 8px;
+}
+
 /* Estilos para el logo */
 
 

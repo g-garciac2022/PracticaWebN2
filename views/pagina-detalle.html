@@ -15,14 +15,14 @@
     <nav>
         <a href="/" class="btn btn-secondary">Ver todos los elementos</a>
     </nav>
-    <div class="container mt-5"> 
+    <div class="container mt-5">
         <!-- Atributos e imagen2-->
 
         <!-- AQui se han añadido los atributos que recibimos del form, cuidado con la sntaxis pues es diferente a la de index-->
-        
+
         <div class="card">
-            <img src="https://th.bing.com/th/id/OIG.wtzPJjM9UZe_Vn9LeKw5?pid=ImgGn&w=1024&h=1024&rs=1"
-            alt="Epic Fantasy">
+            <img src="{{post.url}}"
+                alt="Epic Fantasy">
             <div class="card-body">
                 <h4 class="card-title text-center">{{post.title}}</h4>
                 <p class="card-text">Empresa desarrolladora: {{post.developer}}</p>
@@ -36,57 +36,49 @@
                 <a href="/post/delete/{{post.id}}" class="btn btn-danger">Borrar</a>
             </div>
         </div>
-        
+
+
         <!-- Subelementos -->
+        
         <div class="mt-5 card">
             <div class="card-body">
                 <h5 class="card-title">Reseñas</h5>
+                {{^subPosts}}  <!--Si no hay subelementos, se renderizara el siguiente codigo html--> <!-- prueba a comentar los posts por defecto de zarmaService para ver como se mostraria-->
+
+                <p class="empty-message">Esto está algo vacío...</p>
+    
+        
+        {{/subPosts}}
+                {{#subPosts}}
                 <div class="card-body reseña-usuario">
-                    <h6 class="card-text">@cuchito32</h6>
+                    <h6 class="card-text">{{user}}</h6>
                     <p class="fs-6 lh-sm">
-                        Este juego es una maravilla. El mundo está lleno de detalles, la historia es apasionante y los
-                        personajes son memorables. La jugabilidad es fluida y variada, con un sistema de combate que
-                        mezcla armas, magia y habilidades. Los monstruos son impresionantes y los misterios por
-                        descubrir me mantienen enganchado. Es un juego que recomiendo a todos los amantes del género.
+                        {{review}}
                     </p>
                 </div>
-                <div class="card-body reseña-usuario">
-                    <h6 class="card-text">@SanadaB</h6>
-                    <p class="fs-6 lh-sm">
-                        Este juego es una decepción. El mundo es genérico, la historia es aburrida y los personajes son
-                        planos. La jugabilidad es repetitiva y simplona, con un sistema de combate que se basa en
-                        machacar botones. Los monstruos son clónicos y los misterios por descubrir son predecibles. Es
-                        un juego que no vale la pena ni siquiera probar.
-                    </p>
-                </div>
-                <div class="card-body reseña-usuario">
-                    <h6 class="card-text">@Zuk0z</h6>
-                    <p class="fs-6 lh-sm">
-                        Este juego es una sorpresa. El mundo es original, la historia es intrigante y los personajes son
-                        carismáticos. La jugabilidad es dinámica y divertida, con un sistema de combate que combina
-                        armas, magia y habilidades. Los monstruos son variados y los misterios por descubrir me
-                        sorprenden. Es un juego que me ha gustado mucho y que seguiré jugando.
-                    </p>
-                </div>
+                {{/subPosts}}
+
             </div>
         </div>
+
+
         <!-- Formulario para crear un nuevo subelemento, es el unico con hover para indicar que
         es el unico con el que se puede interactuar sin contar botones-->
         <div class="mt-5 card card-hover">
             <div class="card-body">
                 <h5>Añadir Reseña</h5>
                 <div card="card-body">
-                    <form role="form">
-                        <label for="Usuario" class="form-label">Usuario</label>
-                        <input type="email" class="form-control">
-                        <label for="Reseña" class="form-label">Reseña</label>
-                        <input type="text" class="form-control">
+                    <form role="form" action="/post/{{post.id}}/subpost" method="POST">
+                        <label for="user" class="form-label">Usuario (Solo caracteres alfanuméricos)</label>
+                        <input type="text" class="form-control" id="user" name="user" required pattern="[A-Za-z0-9]+" maxlength="20">
+                        <label for="review" class="form-label">Reseña</label>
+                        <textarea type="text" class="form-control" id="review" name="review" required maxlength="1000" rows="10"></textarea>
+
+
+
+                        <button type="submit" class="btn btn-primary mt-3">Guardar</button>
                     </form>
                 </div>
-
-                <form role="form">
-                    <button type="submit" class="btn btn-primary mt-3">Guardar</button>
-                </form>
             </div>
         </div>
     </div>
