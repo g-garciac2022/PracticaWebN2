@@ -90,6 +90,17 @@ router.post('/post/:id/subpost', (req, res, next) => {
 });
 
 router.get('/post/delete/:id', (req, res) => { //aun no implementado
+    let post = boardService.addPost({ title, developer, description, date, contributor });
+    fetch('/post/:id', {
+    method: 'DELETE',
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+})
+.catch((error) => console.error('Error:', error));
+
 
     boardService.deletePost(req.params.id);
 
